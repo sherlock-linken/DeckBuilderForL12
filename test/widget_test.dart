@@ -7,7 +7,8 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: DeckBuilderApp()));
     await tester.pumpAndSettle();
 
-    expect(find.text('DeckBuilder For L12'), findsOneWidget);
-    expect(find.text('v100 工程骨架已就绪'), findsOneWidget);
+    expect(find.text('L12'), findsWidgets);
+    expect(find.text('三大核心入口'), findsOneWidget);
+    expect(find.text('浏览全卡表'), findsOneWidget);
   });
 }
