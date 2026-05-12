@@ -17,7 +17,7 @@ class CardListPage extends StatelessWidget {
         FilledButton.icon(
           onPressed: () => context.pushNamed(CardDetailPage.routeName),
           icon: const Icon(Icons.open_in_new),
-          label: const Text('示例详情'),
+          label: const Text('查看详情'),
         ),
       ],
       child: Column(
@@ -26,7 +26,7 @@ class CardListPage extends StatelessWidget {
           const DemoHeroBanner(
             icon: Icons.style_outlined,
             title: '卡牌浏览中心',
-            description: '先用框架页打通搜索、筛选、列表和详情跳转。',
+            description: '按阵营、费用与类型快速浏览卡牌，并查看卡牌详情。',
             chips: ['共 251 张', '阵营筛选', '费用筛选', '排序'],
           ),
           const SizedBox(height: 20),
@@ -38,14 +38,14 @@ class CardListPage extends StatelessWidget {
                   DemoBlock(
                     title: '统计信息区',
                     icon: Icons.pie_chart_outline,
-                    subtitle: '后续接阵营分布、类型分布和筛选命中数',
+                    subtitle: '查看当前筛选结果中的阵营与类型分布。',
                     lines: ['当前命中：36', '军团：18', '战术：11', '主宰：2'],
                   ),
                   SizedBox(height: 16),
                   DemoBlock(
                     title: '当前编辑上下文',
                     icon: Icons.edit_note,
-                    subtitle: '后续从牌库编辑页带着上下文进入全卡表',
+                    subtitle: '在构筑流程中保留当前牌库信息，便于直接加入卡牌。',
                     lines: ['牌库名：奥丁中速试作', '阵营：阿斯加德', '已选张数：27 / 40'],
                   ),
                 ],
@@ -56,7 +56,7 @@ class CardListPage extends StatelessWidget {
                   const DemoBlock(
                     title: '搜索与筛选区',
                     icon: Icons.tune,
-                    subtitle: '这里后续接搜索框、阵营、类型、费用和排序条件',
+                    subtitle: '按关键字、阵营、类型、费用和排序条件快速定位卡牌。',
                     lines: ['关键词：奥丁', '阵营：天廷 / 太阳城 / 彼界', '类型：军团 / 战术 / 主宰'],
                   ),
                   const SizedBox(height: 16),
@@ -64,7 +64,7 @@ class CardListPage extends StatelessWidget {
                     title: '卡牌列表区',
                     icon: Icons.view_agenda_outlined,
                     subtitle: '列表项点击后进入卡牌详情',
-                    footer: '当前为 demo 数据骨架',
+                    footer: '支持继续浏览、查看详情与加入牌库。',
                     child: Column(
                       children: [
                         _CardRow(
@@ -142,7 +142,7 @@ class CardDetailPage extends StatelessWidget {
           const DemoHeroBanner(
             icon: Icons.auto_awesome,
             title: '圣枪巡礼者',
-            description: '这里后续展示单卡完整资料、卡图、效果文本和构筑提示。',
+            description: '查看卡牌信息、效果说明与构筑参考。',
             chips: ['天廷阵营', '军团', '费用 3'],
           ),
           const SizedBox(height: 20),
@@ -152,8 +152,8 @@ class CardDetailPage extends StatelessWidget {
               const imageBlock = DemoBlock(
                 title: '卡图展示区',
                 icon: Icons.image_outlined,
-                subtitle: '正式接入图片资源后，这里显示大图和缩略图',
-                lines: ['图片占位框', '版本 / 稀有度', '来源包信息'],
+                subtitle: '展示卡图、稀有度与所属卡包信息。',
+                lines: ['卡图预览', '版本 / 稀有度', '来源包信息'],
               );
               const infoColumn = Column(
                 children: [
@@ -268,34 +268,36 @@ class DeckEditorPage extends StatelessWidget {
           const DemoHeroBanner(
             icon: Icons.auto_fix_high,
             title: '奥丁中速试作',
-            description: '这里后续承接新建牌库、固定卡生成、卡位统计和保存草稿。',
-            chips: ['阵营：阿斯加德', '主宰：奥丁', '可抽取 27 / 40'],
+            description: '在统一工作台内完成构筑、说明、统计与历史查看。',
+            chips: ['阵营：阿斯加德', '主宰：奥丁', '构筑中'],
           ),
           const SizedBox(height: 20),
+          const _EditorTabStrip(),
+          const SizedBox(height: 16),
           LayoutBuilder(
             builder: (context, constraints) {
               final isNarrow = constraints.maxWidth < 1080;
               final mainColumn = Column(
                 children: [
                   const DemoBlock(
-                    title: '牌库基础信息区',
+                    title: '当前牌库工作区',
                     icon: Icons.badge_outlined,
-                    subtitle: '名称、阵营、主宰、草稿状态',
-                    lines: ['牌库名：奥丁中速试作', '状态：草稿', '更新时间：刚刚'],
+                    subtitle: '展示牌库名称、阵营、主宰、状态与当前可抽取张数。',
+                    lines: ['牌库名：奥丁中速试作', '状态：草稿', '可抽取：27 / 40', '更新时间：刚刚'],
                   ),
                   const SizedBox(height: 16),
                   const DemoBlock(
                     title: '固定卡牌区',
                     icon: Icons.push_pin_outlined,
-                    subtitle: '后续按规则生成，不作为手填真值',
+                    subtitle: '展示按规则确定的固定卡牌内容。',
                     lines: ['主城：英灵圣殿', '主宰：奥丁', '天灾：诸神黄昏'],
                   ),
                   const SizedBox(height: 16),
                   DemoBlock(
                     title: '可抽取卡牌区',
                     icon: Icons.layers_outlined,
-                    subtitle: '后续接删卡、调数、跳详情、继续加卡',
-                    footer: '当前 demo：3 张示例卡',
+                    subtitle: '查看当前牌表中的可抽取卡牌，并直接调整数量。',
+                    footer: '支持增减卡牌、删除卡牌与进入卡牌详情。',
                     child: Column(
                       children: [
                         _DeckRow(
@@ -327,16 +329,23 @@ class DeckEditorPage extends StatelessWidget {
               final sideColumn = Column(
                 children: [
                   const DemoBlock(
-                    title: '统计与校验区',
+                    title: '卡池检索与加卡工作区',
                     icon: Icons.rule_folder_outlined,
-                    subtitle: '后续接类型统计、合法性提醒和错误提示',
-                    lines: ['军团：14', '战术：9', '超限项：0', '缺失张数：13'],
+                    subtitle: '保留当前牌库上下文，快速继续搜索、筛选与补充卡牌。',
+                    lines: ['当前模式：带编辑上下文', '已选张数：27 / 40', '默认阵营筛选：阿斯加德'],
+                  ),
+                  const SizedBox(height: 16),
+                  const DemoBlock(
+                    title: '实时统计与校验',
+                    icon: Icons.query_stats,
+                    subtitle: '实时汇总当前张数、类型分布与合法性状态。',
+                    lines: ['军团：14', '战术：9', '装备：3', '当前状态：草稿'],
                   ),
                   const SizedBox(height: 16),
                   DemoBlock(
-                    title: '操作区',
+                    title: '快捷操作',
                     icon: Icons.task_alt_outlined,
-                    subtitle: '先把主要流程跳转打通',
+                    subtitle: '快速进入加卡、详情、保存和导入导出流程。',
                     child: Wrap(
                       spacing: 12,
                       runSpacing: 12,
@@ -354,10 +363,15 @@ class DeckEditorPage extends StatelessWidget {
                           label: const Text('查看详情'),
                         ),
                         OutlinedButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(Icons.save_outlined),
+                          label: const Text('保存草稿'),
+                        ),
+                        OutlinedButton.icon(
                           onPressed: () =>
                               context.pushNamed(ImportExportPage.routeName),
                           icon: const Icon(Icons.import_export),
-                          label: const Text('打开弹窗页'),
+                          label: const Text('导入导出'),
                         ),
                       ],
                     ),
@@ -391,6 +405,59 @@ class DeckEditorPage extends StatelessWidget {
   }
 }
 
+class DeckInitPage extends StatelessWidget {
+  const DeckInitPage({super.key});
+
+  static const routeName = 'deck-init';
+  static const routePath = '/decks/new';
+
+  @override
+  Widget build(BuildContext context) {
+    return AppShellScaffold(
+      title: '新建牌库',
+      actions: [
+        FilledButton.icon(
+          onPressed: () => context.pushNamed(DeckEditorPage.routeName),
+          icon: const Icon(Icons.arrow_forward),
+          label: const Text('确认并进入构筑'),
+        ),
+      ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          DemoHeroBanner(
+            icon: Icons.flag_outlined,
+            title: '新建牌库初始化',
+            description: '先确认阵营与主宰，再进入正式构筑工作台。',
+            chips: ['步骤 1', '阵营优先', '主宰联动'],
+          ),
+          SizedBox(height: 20),
+          DemoBlock(
+            title: '构筑前提确认',
+            icon: Icons.checklist_rtl_outlined,
+            subtitle: '初始化态先完成阵营、主宰与牌库名称确认。',
+            lines: ['阵营：阿斯加德', '可选主宰：奥丁 / 索尔 / 洛基', '预生成名称：奥丁中速试作'],
+          ),
+          SizedBox(height: 16),
+          DemoBlock(
+            title: '固定卡预览',
+            icon: Icons.auto_fix_high_outlined,
+            subtitle: '确认阵营与主宰后，系统会自动生成固定卡上下文。',
+            lines: ['主城：英灵圣殿', '主宰：奥丁', '天灾：诸神黄昏'],
+          ),
+          SizedBox(height: 16),
+          DemoBlock(
+            title: '创建后流向',
+            icon: Icons.alt_route_outlined,
+            subtitle: '确认后进入牌库编辑页的构筑 Tab，并保留初始化上下文。',
+            lines: ['进入：牌库编辑页 / 构筑', '上下文：阵营与主宰同步生效', '固定卡：自动重算并展示'],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class DeckListPage extends StatelessWidget {
   const DeckListPage({super.key});
 
@@ -403,7 +470,7 @@ class DeckListPage extends StatelessWidget {
       title: '我的牌库',
       actions: [
         FilledButton.icon(
-          onPressed: () => context.pushNamed(DeckEditorPage.routeName),
+          onPressed: () => context.pushNamed(DeckInitPage.routeName),
           icon: const Icon(Icons.add),
           label: const Text('新建牌库'),
         ),
@@ -414,21 +481,21 @@ class DeckListPage extends StatelessWidget {
           const DemoHeroBanner(
             icon: Icons.collections_bookmark_outlined,
             title: '历史牌库管理',
-            description: '这里后续展示已保存牌库、状态、更新时间和管理操作。',
+            description: '统一查看已保存牌库的状态、更新时间和管理入口。',
             chips: ['共 6 套', '最近编辑', '草稿 / 已完成'],
           ),
           const SizedBox(height: 20),
           const DemoBlock(
             title: '筛选与搜索区',
             icon: Icons.filter_list,
-            subtitle: '后续支持按名称、阵营、状态过滤',
+            subtitle: '按名称、阵营和状态快速筛选牌库。',
             lines: ['关键词：奥丁', '状态：全部', '排序：按更新时间'],
           ),
           const SizedBox(height: 16),
           DemoBlock(
             title: '牌库列表区',
             icon: Icons.view_list_outlined,
-            subtitle: '点击查看详情或继续编辑',
+            subtitle: '支持查看详情、继续编辑、复制与删除操作。',
             child: Column(
               children: [
                 _DeckRow(
@@ -451,6 +518,52 @@ class DeckListPage extends StatelessWidget {
   }
 }
 
+class _EditorTabStrip extends StatelessWidget {
+  const _EditorTabStrip();
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      children: const [
+        _EditorTabChip(label: '构筑', active: true),
+        _EditorTabChip(label: '说明'),
+        _EditorTabChip(label: '统计'),
+        _EditorTabChip(label: '历史'),
+      ],
+    );
+  }
+}
+
+class _EditorTabChip extends StatelessWidget {
+  const _EditorTabChip({required this.label, this.active = false});
+
+  final String label;
+  final bool active;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: active ? const Color(0xFF173A5E) : const Color(0xFFF6EFDf),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(
+          color: active ? const Color(0xFF173A5E) : const Color(0xFFD7C49E),
+        ),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: active ? const Color(0xFFF2E1B7) : const Color(0xFF5F4B27),
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
 class DeckDetailPage extends StatelessWidget {
   const DeckDetailPage({super.key});
 
@@ -467,6 +580,11 @@ class DeckDetailPage extends StatelessWidget {
           icon: const Icon(Icons.edit_outlined),
           label: const Text('继续编辑'),
         ),
+        OutlinedButton.icon(
+          onPressed: () => context.pushNamed(ImportExportPage.routeName),
+          icon: const Icon(Icons.import_export),
+          label: const Text('导出牌库'),
+        ),
       ],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -474,7 +592,7 @@ class DeckDetailPage extends StatelessWidget {
           const DemoHeroBanner(
             icon: Icons.inventory_2_outlined,
             title: '奥丁中速试作',
-            description: '详情页偏展示，后续支持导出、删除和转入编辑。',
+            description: '查看牌库完整构成、统计信息与构筑状态。',
             chips: ['阿斯加德', '主宰：奥丁', '状态：草稿'],
           ),
           const SizedBox(height: 20),
@@ -521,7 +639,7 @@ class DeckDetailPage extends StatelessWidget {
           const DemoBlock(
             title: '统计信息区',
             icon: Icons.query_stats,
-            subtitle: '后续接张数、类型统计、合法性结论',
+            subtitle: '汇总张数、类型分布与当前合法性状态。',
             lines: ['当前张数：27 / 40', '军团：14', '战术：9', '合法性：未完成'],
           ),
         ],
@@ -552,30 +670,37 @@ class ImportExportPage extends StatelessWidget {
         children: const [
           DemoHeroBanner(
             icon: Icons.import_export,
-            title: '导入导出弹窗页骨架',
-            description: '当前先用独立页面模拟弹窗结构，后续可再替换为真实 dialog。',
-            chips: ['文本导入', '解析反馈', '导出文本'],
+            title: '导入导出牌库',
+            description: '作为上下文弹窗承接文本导入、导出与解析反馈。',
+            chips: ['上下文弹窗', '文本导入', '导出文本'],
           ),
           SizedBox(height: 20),
           DemoBlock(
+            title: '当前上下文',
+            icon: Icons.layers_clear_outlined,
+            subtitle: '可从我的牌库、牌库详情页或牌库编辑页打开，并在完成后回到原上下文。',
+            lines: ['来源：牌库编辑页', '当前牌库：奥丁中速试作', '完成后：返回原页面继续处理'],
+          ),
+          SizedBox(height: 16),
+          DemoBlock(
             title: '文本输入区',
             icon: Icons.text_snippet_outlined,
-            subtitle: '后续接粘贴牌表文本和导入按钮',
-            lines: ['示例：', '奥丁中速试作', '主宰：奥丁', '圣枪巡礼者 x2'],
+            subtitle: '粘贴牌表文本后即可开始识别与导入。',
+            lines: ['牌库名称：奥丁中速试作', '主宰：奥丁', '圣枪巡礼者 x2'],
           ),
           SizedBox(height: 16),
           DemoBlock(
             title: '解析结果区',
             icon: Icons.fact_check_outlined,
-            subtitle: '展示成功项、未知项、错误项',
-            lines: ['已识别：24 项', '未知行：1', '错误：主宰缺失'],
+            subtitle: '明确展示识别成功项、未知项、错误项与当前规则状态。',
+            lines: ['已识别：24 项', '未知行：1', '错误：主宰缺失', '当前状态：可保存为草稿'],
           ),
           SizedBox(height: 16),
           DemoBlock(
             title: '导出文本区',
             icon: Icons.outbox_outlined,
-            subtitle: '后续接复制、导出和保存草稿',
-            lines: ['当前导出文本占位', '牌库名 / 主宰 / 卡牌行列表'],
+            subtitle: '生成可复制的牌表文本，便于分享与备份。',
+            lines: ['牌库名 / 主宰 / 卡牌行列表', '支持复制与导出'],
           ),
         ],
       ),

@@ -23,6 +23,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const CardDetailPage(),
       ),
       GoRoute(
+        path: DeckInitPage.routePath,
+        name: DeckInitPage.routeName,
+        builder: (context, state) => const DeckInitPage(),
+      ),
+      GoRoute(
         path: DeckEditorPage.routePath,
         name: DeckEditorPage.routeName,
         builder: (context, state) => const DeckEditorPage(),

@@ -602,7 +602,7 @@ class _HeroVisual extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    '从全卡检索到牌库管理，先把最核心的构筑工作流跑通。',
+                    '从全卡检索到牌库管理，覆盖常用的构筑与浏览场景。',
                     style: TextStyle(
                       color: Color(0xFFE5EAF1),
                       fontSize: 15,
@@ -639,7 +639,7 @@ class _FeatureEntrySection extends StatelessWidget {
         subtitle: '从主宰与阵营规则开始构筑',
         buttonLabel: '开始构筑',
         icon: Icons.add_box_outlined,
-        onTap: () => context.pushNamed(DeckEditorPage.routeName),
+        onTap: () => context.pushNamed(DeckInitPage.routeName),
       ),
       _EntryCardData(
         title: '导入牌库',
@@ -652,7 +652,7 @@ class _FeatureEntrySection extends StatelessWidget {
 
     return _SectionFrame(
       title: '三大核心入口',
-      subtitle: '把最常用的首页操作收敛到一屏内，先完成浏览与构筑起手。',
+      subtitle: '将最常用的首页操作集中展示，便于快速开始浏览与构筑。',
       child: compact
           ? Column(
               children: [
@@ -884,24 +884,24 @@ class _QuickHelpCard extends StatelessWidget {
 
     return _SectionFrame(
       title: '快捷帮助',
-      subtitle: '规则和使用提示先放首页，减少第一次上手阻力。',
+      subtitle: '快速了解常用规则与使用方式，帮助你更顺畅地完成构筑。',
       child: Column(
         children: [
           _MiniActionTile(
             icon: Icons.history_edu_outlined,
             title: '牌库推进',
-            subtitle: '先从识别可抽卡位开始',
-            onTap: () => context.pushNamed(DeckEditorPage.routeName),
+            subtitle: '从可抽卡位与主宰规则开始完善牌表',
+            onTap: () => context.pushNamed(DeckInitPage.routeName),
           ),
           const SizedBox(height: 12),
           _MiniActionTile(
             icon: Icons.help_outline,
             title: '常见问题',
-            subtitle: '稍后写成完整说明页',
+            subtitle: '查看导入、构筑与分享相关说明',
             onTap: () => ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  '常见问题页暂未接入，当前先保留入口。',
+                  '常见问题内容即将补充。',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: Colors.white,
                   ),
@@ -921,16 +921,16 @@ class _HighlightsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _SectionFrame(
-      title: '当前阶段目标',
-      subtitle: '首页已经进入正式视觉阶段，后续重点开始替换真实数据。',
+      title: '构筑指南',
+      subtitle: '开始构筑前，先确认主宰、阵营和牌库结构要求。',
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _HighlightLine(text: '首页已切到正式布局基线'),
+          _HighlightLine(text: '优先确定主宰与阵营，再补充核心卡牌组合'),
           SizedBox(height: 10),
-          _HighlightLine(text: '页面主流程跳转已打通'),
+          _HighlightLine(text: '通过全卡表筛选费用、类型与阵营，提高找卡效率'),
           SizedBox(height: 10),
-          _HighlightLine(text: '下一步接首页真实牌库数据'),
+          _HighlightLine(text: '导入导出可用于分享套牌与迁移构筑记录'),
         ],
       ),
     );
